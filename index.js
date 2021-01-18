@@ -23,4 +23,4 @@ app.use('/api/v1/util', utilRoutes);
 
 
 
-app.listen(process.env.PORT || 3000, () => console.log('Server listening port 3000'));
+app.listen(process.env.PORT || 3000, () => console.log('Server listening port ' + process.env.PORT || 3000));
