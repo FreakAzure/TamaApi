@@ -11,8 +11,8 @@
     "url": "git+https://FlyAzure@bitbucket.org/FlyAzure/tamaapi.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "FreakAzure",
+  "license": "MIT",
   "homepage": "https://bitbucket.org/FlyAzure/tamaapi#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",

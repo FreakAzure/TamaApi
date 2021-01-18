@@ -28,6 +28,7 @@ router.post('/register', async (req, res) => {
         const token = jwt.sign({_id: user._id}, process.env.TOKEN_SEED);
         // Send auth token
         res.send(token);
+        // TODO Maybe send an email?
     } catch(err){
         // Catch error
         res.status(400).send(err);

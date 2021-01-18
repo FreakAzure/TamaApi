@@ -3,16 +3,19 @@ const User = require('../models/User');
 const Pet = require('../models/Pet');
 const verify = require('./tokenVerify');
 
+
+// Get user's pet
 router.get('/', verify, async (req, res) => {
     const user = await User.findOne({_id: req.user});
     if (!user) return res.status(400).send('User not found');
     const pet = await Pet.findOne({owner_id: user._id});
-    if (!pet) return res.status(400).send('Pet not found')
+    if (!pet) return res.status(404).send('Pet not found')
     res.send(pet);
-    res.status(400).send(err);
 })
 
+// Create a new pet for the user
 router.get('/generate', verify, async (req, res) => {
+    // Get user info
     const user = await User.findById(req.user);
     if (!user) return res.status(400).send('User not found');
 
@@ -57,6 +60,35 @@ router.get('/generate', verify, async (req, res) => {
         res.send(savedPet);
     } catch(err) {
         res.status(500).send(err);
+    }
+})
+
+// save pet
+router.put('/', verify, async (req, res) => {
+    // Get user info
+    const user = await User.findById(req.user);
+    if (!user) return res.status(400).send('User not found');
+
+    try {
+        // Get user's pet
+         const updatedPet = await Pet.findOneAndUpdate({owner_id: req.user}, 
+            {
+                name: req.body.name,
+                max_health: req.body.max_health,
+                health: req.body.health,
+                level: req.body.level,
+                happiness: req.body.happiness,
+                hunger: req.body.hunger,
+                experience: req.body.experience,
+                max_energy: req.body.max_energy,
+                energy: req.body.energy,
+                xp_next_level: req.body.xp_next_level,
+                pet_type: req.body.pet_type
+            }, 
+            {returnOriginal: false});
+            res.send('Success');
+    } catch (err) {
+        res.status(400).send(err);
     }
 })
 
