@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const authRoute = require('./routes/auth');
 const petRoutes = require('./routes/petRoutes');
 const utilRoutes = require('./routes/utilRouter');
+const port = process.env.PORT || 3000
 dotnenv.config();
 
 // Connect to db
