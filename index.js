@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 // import routes
 const authRoute = require('./routes/auth');
 const petRoutes = require('./routes/petRoutes');
-
+const utilRoutes = require('./routes/utilRouter');
 dotnenv.config();
 
 // Connect to db
@@ -17,8 +17,10 @@ mongoose.connect(process.env.DB_CONNECT,
 app.use(express.json());
 
 // Route middlewares
-app.use('/api/user', authRoute);
-app.use('/api/pet', petRoutes);
+app.use('/api/v1/user', authRoute);
+app.use('/api/v1/pet', petRoutes);
+app.use('/api/v1/util', utilRoutes);
+
 
 
 app.listen(3000, () => console.log('Server listening port 3000'));
