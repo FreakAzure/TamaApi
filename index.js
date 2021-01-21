@@ -22,6 +22,4 @@ app.use('/api/v1/user', authRoute);
 app.use('/api/v1/pet', petRoutes);
 app.use('/api/v1/util', utilRoutes);
 
-
-
 app.listen(port, () => console.log('Server listening port ' + port));
